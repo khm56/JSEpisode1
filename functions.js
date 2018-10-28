@@ -5,7 +5,11 @@
  * - logs "Hello <name>" if there is a name
  */
 function greet(name) {
-  // Your code here
+  if (name)
+  {console.log("Hello "+name)}
+  else {
+    console.log("Hello")
+  }
 }
 
 /**
@@ -14,7 +18,12 @@ function greet(name) {
  * - returns true if it's odd, false otherwise
  */
 function isOdd(n) {
-  // Your code here
+  if(n%2 !==0){
+    return true
+  }
+  else{
+    return false
+  }
 }
 
 /**
@@ -30,6 +39,12 @@ function isOdd(n) {
  */
 function oddsSmallerThan(n) {
   // Your code here
+  if(isOdd(n)){
+    return (n-1)/2
+  }
+  else{
+    return n/2
+  }
 }
 
 /**
@@ -44,6 +59,12 @@ function oddsSmallerThan(n) {
  */
 function squareOrDouble(n) {
   // Your code here
+  if(isOdd(n)){
+    return n*n
+  }
+  else{
+    return n*2
+  }
 }
 
 /**
@@ -65,6 +86,43 @@ function squareOrDouble(n) {
  */
 function ageFromCivilID(civilID) {
   // Your code here
+  var current=new Date()
+  console.log(current)
+  var year= current.getFullYear()
+  var month=current.getMonth()+1
+  console.log(month);
+  var day=current.getDate()
+  if(month<10){
+    var all=`${year}0${month}${day}`
+  }else{
+    var all=`${year}${month}${day}`
+  }
+  console.log(all)
+  let dob=0;
+  let age=0;
+  console.log(civilID[0])
+  if(civilID[0]==='1'){
+    dob=`18${civilID.slice(1,7)}`
+    age=all-dob;
+    age=age.toString().slice(0,3);
+  }else if(civilID[0]==='2'){
+    dob=`19${civilID.slice(1,7)}`
+    age=all-dob;
+    age=age.toString().slice(0,2);
+  }else if(civilID[0]==='3'){
+    dob=`20${civilID.slice(1,7)}`
+    if(all-dob>=100000){
+      age=all-dob;
+      age=age.toString().slice(0,2);
+    }else if(all-dob<100000 && all-dob>=10000){
+      age=all-dob;
+      age=age.toString().slice(0,1);
+    }else{
+      age=0;
+    }
+  }
+
+  return +age
 }
 
 /**
@@ -80,6 +138,11 @@ function ageFromCivilID(civilID) {
  */
 function canVoteInKuwait(civilID, isKuwaiti, isRoyal) {
   // Your code here
+  if(ageFromCivilID(civilID)>21 && isKuwaiti && !isRoyal){
+    return true;
+  }else{
+    return false;
+  }
 }
 
 module.exports = {
